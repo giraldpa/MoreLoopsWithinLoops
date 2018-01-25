@@ -78,19 +78,20 @@ def largest_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
-    maxnum = 0
+    maxnum = None
     for j in range(len(seq_seq)):
         sub_seq = seq_seq[j]
-        for k in range(len(sub_seq)):
-            if sub_seq[k] > maxnum:
-                maxnum = sub_seq[k]
-    if maxnum == 0:
-        return None
-    else:
-        return maxnum
+        if len(seq_seq) > 0 and maxnum is None:
+            if len(sub_seq) > 0:
+                maxnum = seq_seq[j][0]
+        if maxnum is not None:
+            for k in range(len(sub_seq)):
+                if sub_seq[k] > maxnum:
+                    maxnum = sub_seq[k]
+    return maxnum
 
 
 def run_test_largest_negative_number():
@@ -395,7 +396,7 @@ def first_is_elsewhere_too(seq_seq):
     and the given argument is a sequence of sequences.
     """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # done: 6. Implement and test this function.
     #          Some tests are already written for you (above).
     #
     # IMPLEMENTATION RESTRICTION:
@@ -410,11 +411,12 @@ def first_is_elsewhere_too(seq_seq):
     #   in this problem, as doing so would defeat the goal of providing
     #   practice at loops within loops (within loops within ...)
     # ------------------------------------------------------------------
-    for j in range(len(seq_seq)):
-        sub_seq = seq_seq[j]
-        for k in range(len(sub_seq)):
-            if sub_seq[0] == sub_seq[k]:
-                return True
+    for j in range(len(seq_seq[0])):
+        test = seq_seq[0][j]
+        for k in range(1, len(seq_seq)):
+            for g in range(len(seq_seq[k])):
+                if seq_seq[k][g] == test:
+                    return True
     return False
 
 
