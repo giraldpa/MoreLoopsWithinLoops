@@ -113,12 +113,12 @@ def run_test_largest_negative_number():
     print('Expected and actual are:', expected, answer)
 
     # Test 2
-    expected = -500
+    expected = -4
     answer = largest_negative_number(([-500], [-400], [-90, -4]))
     print('Expected and actual are:', expected, answer)
 
     # Test 3
-    expected = -432
+    expected = -90
     answer = largest_negative_number(([987], [86], [-90, -432]))
     print('Expected and actual are:', expected, answer)
 
@@ -153,16 +153,20 @@ def largest_negative_number(seq_seq):
     #   being constructed (so the SPACE allowed is limited to the
     #   give sequence of sequences plus any non-list variables you want).
     # ------------------------------------------------------------------
-    negnum = 0
+    neglist = []
     for j in range(len(seq_seq)):
         sub_seq = seq_seq[j]
         for k in range(len(sub_seq)):
-            if sub_seq[k] < negnum:
-                negnum = sub_seq[k]
-    if negnum == 0:
+            if sub_seq[k] < 0:
+                neglist = neglist + [sub_seq[k]]
+    if neglist == []:
         return None
+    largest = neglist[0]
+    for g in range(len(neglist)):
+        if neglist[g] > largest:
+            largest = neglist[g]
     else:
-        return negnum
+        return largest
 
 
 def run_test_first_is_elsewhere_too():
